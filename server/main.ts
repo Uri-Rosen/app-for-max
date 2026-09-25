@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import http from 'node:http';
 import { DB_PATH, HOST, PORT } from './config.ts';
 import { openDb } from './db/index.ts';
 import { buildApp } from './http.ts';
@@ -49,7 +50,10 @@ housekeeping();
 setInterval(housekeeping, 60 * 60 * 1000).unref();
 void processQueue();
 
-const server = buildApp().listen(PORT, HOST, () => {
+// Plain http.Server: Express 5's app.listen() also calls its callback on errors,
+// which would announce "running" (and open the browser) when the port is taken.
+const server = http.createServer(buildApp());
+server.listen(PORT, HOST, () => {
   console.log(`מערכת הזיכרון פועלת: ${url}`);
   console.log(`מסד הנתונים: ${DB_PATH}`);
   if (wantsOpen) openBrowser();

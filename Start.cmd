@@ -23,6 +23,8 @@ if not exist web\dist\index.html (
 )
 
 node --disable-warning=ExperimentalWarning server\main.ts --open
+rem Keep the window open on failure so the message can be read.
+if errorlevel 1 goto :fail
 exit /b 0
 
 :fail

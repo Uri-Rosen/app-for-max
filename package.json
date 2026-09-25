@@ -1,0 +1,44 @@
+{
+  "name": "memory-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "מערכת אישית לזיכרון ארוך טווח — אתר לימוד מקומי עם חזרות מרווחות",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/main.ts",
+    "dev:server": "node --disable-warning=ExperimentalWarning --watch server/main.ts",
+    "dev:web": "vite --config web/vite.config.ts",
+    "build": "vite build --config web/vite.config.ts",
+    "typecheck": "tsc -p tsconfig.json && tsc -p web/tsconfig.json",
+    "test": "vitest run",
+    "seed:demo": "node --disable-warning=ExperimentalWarning scripts/seed-demo.ts",
+    "demo": "node --disable-warning=ExperimentalWarning scripts/demo.ts",
+    "start:open": "node --disable-warning=ExperimentalWarning server/main.ts --open"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "express": "^5.2.1",
+    "fflate": "^0.8.3",
+    "pdfjs-dist": "^6.3.289"
+  },
+  "devDependencies": {
+    "@fontsource-variable/assistant": "^5.3.0",
+    "@fontsource/frank-ruhl-libre": "^5.3.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
+  }
+}
